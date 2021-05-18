@@ -7,7 +7,7 @@ namespace Models
     public sealed class SingleChannel
 
     {
-        private static readonly Channel <Shape> _shareChannelLazy =  Channel.CreateBounded<Shape>(int.MaxValue);
+        private static readonly Channel <Shape> _shareChannel =  Channel.CreateBounded<Shape>(int.MaxValue);
         private SingleChannel()
         {
 
@@ -21,14 +21,14 @@ namespace Models
         {
             get
             {
-                return _shareChannelLazy.Writer;
+                return _shareChannel.Writer;
             }
         }
         public static ChannelReader<Shape> ShareChannelReader
         {
             get
             {
-                return _shareChannelLazy.Reader;
+                return _shareChannel.Reader;
             }
         }
     }
