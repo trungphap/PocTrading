@@ -5,11 +5,16 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfBasic", "WpfBasic.csproj", "{EAE1C4FD-CD98-4EC8-AC80-635D7245FC60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "..\ViewModels\ViewModels.csproj", "{896892BA-2F6D-41EC-9F6D-9540D516343D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Commands\Commands.csproj", "{071D912C-05A6-4D13-8D55-5A2D136000F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "..\Commands\Commands.csproj", "{071D912C-05A6-4D13-8D55-5A2D136000F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{C6695A5F-DCFA-422A-8094-48AD50468D43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "..\Models\Models.csproj", "{C6695A5F-DCFA-422A-8094-48AD50468D43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{896892BA-2F6D-41EC-9F6D-9540D516343D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D7D5B64-B4C9-46B3-98C3-7476D6337054}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +26,6 @@ Global
 		{EAE1C4FD-CD98-4EC8-AC80-635D7245FC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAE1C4FD-CD98-4EC8-AC80-635D7245FC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAE1C4FD-CD98-4EC8-AC80-635D7245FC60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{071D912C-05A6-4D13-8D55-5A2D136000F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{071D912C-05A6-4D13-8D55-5A2D136000F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{071D912C-05A6-4D13-8D55-5A2D136000F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +34,10 @@ Global
 		{C6695A5F-DCFA-422A-8094-48AD50468D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6695A5F-DCFA-422A-8094-48AD50468D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6695A5F-DCFA-422A-8094-48AD50468D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896892BA-2F6D-41EC-9F6D-9540D516343D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

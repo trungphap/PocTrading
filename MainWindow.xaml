@@ -23,15 +23,18 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnApply" Click="btnApply_Click" Margin="0 0 10 0" Grid.Column="0" Content="Apply"></Button>
+                <Button x:Name="btnProduce" Command="{Binding ProduceCommand, Source={StaticResource cs}}"  Margin="0 0 10 0" Grid.Column="0" Content="Produce"></Button>
                 <Button  x:Name="btnAReset" Command="{Binding OpenCommand, Source={StaticResource cs}}" Grid.Column="1" Content="Async Cmd"></Button>
                 <Button Command="{Binding MyCommand, Source={StaticResource cs}}" Margin="10 0 0 0" Grid.Column="2" Content="Command"></Button>
 
             </Grid>
           
 
-            <TextBlock Text="Status"/>
+            <TextBlock Text="Producer"/>
             <TextBlock Text="{Binding Shell.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
+            <TextBlock Text="Consumer"/>
+            <TextBlock Text="{Binding Consummer.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
+
             <TextBox x:Name="txtDescription" Padding="2" Text="{Binding Shell.StatusText}"/>
 
             <Grid>
