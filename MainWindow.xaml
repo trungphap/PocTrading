@@ -85,12 +85,6 @@
             </Grid>
 
             <TextBlock Text="Finish" Margin="0 10 0 0"/>
-            <ComboBox SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0" Padding="2">
-                <ComboBoxItem>Painted</ComboBoxItem>
-                <ComboBoxItem>Not Painted</ComboBoxItem>
-            </ComboBox>
-
-
         </StackPanel>
     </Border>
 </Window>

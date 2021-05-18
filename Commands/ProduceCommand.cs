@@ -1,6 +1,6 @@
 ﻿using Models;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
+using System.Threading.Channels;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
@@ -11,11 +11,11 @@ namespace Commands
     public sealed class ProduceCommand : AsyncCommand
     {
         readonly IShell _shell;      
-        readonly ConcurrentQueue<Shape> _shareQueue;
+        readonly ConcurrentQueue<Shape> _shareQueue;        
         public ProduceCommand(IShell shell)
         {
             _shell = shell;        
-            _shareQueue = SingleQueue.ShareQueueLazy;
+            _shareQueue = SingleQueue.ShareQueueLazy;            
         }
 
 
@@ -29,7 +29,8 @@ namespace Commands
         {
             try
             {
-               await Task.Run(async () => await FillQueueWhile());               
+               //await Task.Run(async () => await FillQueueWhile());               
+               await Task.Run(async () => await FillChannelWhile());               
             }
             finally
             {
@@ -37,7 +38,19 @@ namespace Commands
             }
         }
 
-       
+        public async Task FillChannelWhile()
+        {           
+            Random rnd = new Random();
+            while (true)
+            {
+                var shapeType = rnd.Next(0, 2);
+                var shapeFactory = GetShapeFactory(shapeType);
+                var shape = shapeFactory.CreateShape();
+                await SingleChannel.ShareChannelWriter.WriteAsync(shape);
+                _shell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } write {shape.Name} {shape.Id} on channel";               
+              //  await Task.Delay(10);
+            }
+        }
 
 
         public async Task FillQueueWhile()

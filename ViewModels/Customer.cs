@@ -14,6 +14,8 @@ namespace ViewModels
         public ICommand ConsumeCommand { get; }
         public IShell Shell { get; set; }
         public IShell Consummer { get; set; }
+        
+
         public Customer()
         {
            // MyCommand = new CustomerCommand(ExcuteMethod, CanExecuteMethod);
@@ -21,7 +23,7 @@ namespace ViewModels
             Consummer = new Shell();
             OpenCommand = new OpenCommand(Shell);
             ProduceCommand = new ProduceCommand(Shell);
-            ConsumeCommand = new ConsumeCommand(Consummer);
+            ConsumeCommand = new ConsumeCommand(Consummer);            
         }
 
 
