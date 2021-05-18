@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SingleQueue.cs" />
+    <Compile Include="TriangleFactory.cs" />
+    <Compile Include="RegtangleFactory.cs" />
+    <Compile Include="CircleFactory.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="Circle.cs" />

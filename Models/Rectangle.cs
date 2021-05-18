@@ -8,19 +8,19 @@ namespace Models
 {
     public class Rectangle : Shape
     {
-        public static Shape Create()
+        public Rectangle()
         {
             Random rnd = new Random();
-            return new Rectangle() { 
-                Longueur = (decimal)rnd.NextDouble()*10 ,
-                Largeur = (decimal)rnd.NextDouble() * 10,
-                Name = "Rectangle",
-                Id = rnd.Next(1, 1000)
-            };
+
+            Longueur = (decimal)rnd.NextDouble() * 10;
+            Largeur = (decimal)rnd.NextDouble() * 10;
+            Name = "Rectangle";
+            Id = rnd.Next(1, 1000);
         }
-        
-        public decimal Longueur { get; set; } 
-        public decimal Largeur { get; set; } 
+
+
+        public decimal Longueur { get; set; }
+        public decimal Largeur { get; set; }
 
     }
 }
