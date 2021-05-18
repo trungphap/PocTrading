@@ -48,6 +48,7 @@
     <Compile Include="CustomerCommand.cs" />
     <Compile Include="IAsyncCommandG.cs" />
     <Compile Include="IAsyncCommand.cs" />
+    <Compile Include="ConsumeCommand.cs" />
     <Compile Include="ProduceCommand.cs" />
     <Compile Include="OpenCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,13 +10,11 @@ namespace Commands
 {
     public sealed class ProduceCommand : AsyncCommand
     {
-        readonly IShell _shell;
-        readonly IShell _consummer;
+        readonly IShell _shell;      
         readonly ConcurrentQueue<Shape> _shareQueue;
-        public ProduceCommand(IShell shell, IShell consummer)
+        public ProduceCommand(IShell shell)
         {
-            _shell = shell;
-            _consummer = consummer;
+            _shell = shell;        
             _shareQueue = SingleQueue.ShareQueueLazy;
         }
 
@@ -31,9 +29,7 @@ namespace Commands
         {
             try
             {
-                Task t1 = Task.Run(() => FillQueueWhile());
-                Task t2 = Task.Run(() => PeakQueueWhile());
-                await Task.WhenAll(t1, t2);
+               await Task.Run(async () => await FillQueueWhile());               
             }
             finally
             {
@@ -48,7 +44,7 @@ namespace Commands
         {
             Random rnd = new Random();
 
-            while (_shareQueue.Count < 100)
+            while (_shareQueue.Count < 10000000)
             {
                 var shapeType = rnd.Next(0, 2);
                 var shapeFactory  = GetShapeFactory(shapeType);
@@ -79,17 +75,5 @@ namespace Commands
             return shapeFactory;
         }
 
-        public async Task PeakQueueWhile()
-        {
-            Shape shape;
-            while (true)
-            {
-                _shareQueue.TryDequeue(out shape);
-                _consummer.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } treated {shape?.Name} {shape?.Id} on queue length {_shareQueue.Count}";
-
-                await Task.Delay(100);
-            }
-
-        }
     }
 }

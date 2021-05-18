@@ -25,7 +25,7 @@
 
                 <Button x:Name="btnProduce" Command="{Binding ProduceCommand, Source={StaticResource cs}}"  Margin="0 0 10 0" Grid.Column="0" Content="Produce"></Button>
                 <Button  x:Name="btnAReset" Command="{Binding OpenCommand, Source={StaticResource cs}}" Grid.Column="1" Content="Async Cmd"></Button>
-                <Button Command="{Binding MyCommand, Source={StaticResource cs}}" Margin="10 0 0 0" Grid.Column="2" Content="Command"></Button>
+                <Button Command="{Binding ConsumeCommand, Source={StaticResource cs}}" Margin="10 0 0 0" Grid.Column="2" Content="Consume"></Button>
 
             </Grid>
           
