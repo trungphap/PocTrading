@@ -21,8 +21,8 @@ namespace Commands
 
         public override bool CanExecute()
         {
-            return true;
-            //return RunningTasks.Count() == 0;
+            //return true;
+            return _shell.StatusExecutable;
         }
 
         public override async Task ExecuteAsync()
@@ -48,7 +48,7 @@ namespace Commands
                 var shape = shapeFactory.CreateShape();
                 await SingleChannel.ShareChannelWriter.WriteAsync(shape);
                 _shell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } write {shape.Name} {shape.Id} on channel";               
-              //  await Task.Delay(10);
+                await Task.Delay(10);
             }
         }
 

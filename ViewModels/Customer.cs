@@ -20,13 +20,13 @@ namespace ViewModels
 
         public Customer()
         {
-           // MyCommand = new CustomerCommand(ExcuteMethod, CanExecuteMethod);
-            Shell = new Shell();
+           // MyCommand = new CustomerCommand(ExcuteMethod, CanExecuteMethod);           
             Consummer = new Shell();
             QueueShell = new Shell();
             OpenCommand = new OpenCommand(Shell);
+            Shell = QueueShell;
             ProduceCommand = new ProduceCommand(Shell);
-            ConsumeCommand = new ConsumeCommand(Consummer);
+            ConsumeCommand = new ConsumeCommand(Consummer,QueueShell);
             QueueCommand = new QueueCommandG<string>(QueueShell);            
         }
 

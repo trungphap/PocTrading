@@ -12,18 +12,19 @@ namespace Commands
     {
 
         readonly IShell _consummer;
+        readonly IShell _queueShell;
         readonly ConcurrentQueue<Shape> _shareQueue;
-        public ConsumeCommand(IShell consummer)
+        public ConsumeCommand(IShell consummer, IShell queueShell)
         {
             _consummer = consummer;
+            _queueShell = queueShell;
             _shareQueue = SingleQueue.ShareQueueLazy;
         }
 
 
         public override bool CanExecute()
         {
-            return true;
-            //return RunningTasks.Count() == 0;
+            return _queueShell.StatusExecutable;           
         }
 
         public override async Task ExecuteAsync()
