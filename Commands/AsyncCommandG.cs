@@ -44,7 +44,7 @@ namespace Commands
             runningTasks.Add(runningTask);
             try
             {
-                await ExecuteAsync((T)parameter);
+                await runningTask;
             }
             finally
             {

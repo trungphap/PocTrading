@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AsyncCommandG.cs" />
     <Compile Include="AsyncCommand.cs" />
+    <Compile Include="QueueCommandG.cs" />
     <Compile Include="CustomerCommand.cs" />
     <Compile Include="IAsyncCommandG.cs" />
     <Compile Include="IAsyncCommand.cs" />

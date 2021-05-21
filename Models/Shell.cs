@@ -6,12 +6,23 @@ namespace Models
     public class Shell : IShell, INotifyPropertyChanged
     {
         string _statusText;
+        bool _statusExecutable;
         public string StatusText
         {
             get => _statusText;
             set
             {
                 _statusText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool StatusExecutable
+        {
+            get => _statusExecutable;
+            set
+            {
+                _statusExecutable = value;
                 OnPropertyChanged();
             }
         }

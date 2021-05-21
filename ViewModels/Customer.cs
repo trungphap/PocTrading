@@ -12,8 +12,10 @@ namespace ViewModels
         public ICommand OpenCommand { get; }
         public ICommand ProduceCommand { get; }
         public ICommand ConsumeCommand { get; }
+        public ICommand QueueCommand { get; }
         public IShell Shell { get; set; }
         public IShell Consummer { get; set; }
+        public IShell QueueShell { get; set; }
         
 
         public Customer()
@@ -21,9 +23,11 @@ namespace ViewModels
            // MyCommand = new CustomerCommand(ExcuteMethod, CanExecuteMethod);
             Shell = new Shell();
             Consummer = new Shell();
+            QueueShell = new Shell();
             OpenCommand = new OpenCommand(Shell);
             ProduceCommand = new ProduceCommand(Shell);
-            ConsumeCommand = new ConsumeCommand(Consummer);            
+            ConsumeCommand = new ConsumeCommand(Consummer);
+            QueueCommand = new QueueCommandG<string>(QueueShell);            
         }
 
 
