@@ -13,9 +13,10 @@
         <vm:Customer x:Key="cs"/>
     </Window.Resources>
     <Border Padding="10">
-        
+
         <StackPanel>
             <!-- Buttons -->
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -23,16 +24,42 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnProduce" Command="{Binding ProduceCommand, Source={StaticResource cs}}"  Margin="0 0 10 0" Grid.Column="0" Content="Produce"></Button>
-                <Button  x:Name="btnAReset" Command="{Binding OpenCommand, Source={StaticResource cs}}" Grid.Column="1" Content="Async Cmd"></Button>
-                <Button Command="{Binding ConsumeCommand, Source={StaticResource cs}}" Margin="10 0 0 0" Grid.Column="2" Content="Consume"></Button>
+                <TextBlock  Margin="0 0 10 0" Grid.Column="0" Text="Max queue length"></TextBlock>
+                <TextBox  x:Name="txtQueueLength" Grid.Column="1" ></TextBox>
+                <Button Command="{Binding ConsumeCommand, Source={StaticResource cs}}" Margin="10 0 0 0" Grid.Column="2" Content="Set queue length"></Button>
+
+            </Grid>
+            <TextBlock Text="Producer" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock  Margin="0 0 10 0" Grid.Column="0" Text="Step Time Producer"></TextBlock>
+                <TextBox  x:Name="txtStepTimeProducer" Grid.Column="1" ></TextBox>
+                <Button x:Name="btnProduce" Command="{Binding ProduceCommand, Source={StaticResource cs}}"  Margin="10 0 0 0" Grid.Column="2" Content="Run Producer"></Button>
+
+            </Grid>
+            <TextBlock Text="{Binding Shell.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
+
+
+            <TextBlock Text="Consumer" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock  Margin="0 0 10 0" Grid.Column="0" Text="Step Time Consumer"></TextBlock>
+                <TextBox  x:Name="txtStepTimeConsumer" Grid.Column="1" ></TextBox>
+
+                     <Button Command="{Binding ConsumeCommand, Source={StaticResource cs}}" Margin="10 0 0 0" Grid.Column="2" Content="Consume"></Button>
 
             </Grid>
           
 
-            <TextBlock Text="Producer"/>
-            <TextBlock Text="{Binding Shell.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
-            <TextBlock Text="Consumer"/>
             <TextBlock Text="{Binding Consummer.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
 
             <TextBox x:Name="txtDescription" Padding="2" Text="{Binding Shell.StatusText}"/>
