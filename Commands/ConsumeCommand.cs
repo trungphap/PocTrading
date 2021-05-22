@@ -36,7 +36,8 @@ namespace Commands
             }
             finally
             {
-              
+                _consummer.StatusExecutable = true;
+                _consummer.StatusText = "finished";
             }
         }
 
@@ -45,7 +46,7 @@ namespace Commands
             Shape shape;
             _consummer.StatusExecutable = false;
 
-            while (await  SingleChannel.ShareChannelReader.WaitToReadAsync())
+            while (await  SingleChannel.ShareChannelReader.WaitToReadAsync() && !_queueShell.StatusExecutable)
             {
                 if (SingleChannel.ShareChannelReader.TryRead(out shape))
                     {

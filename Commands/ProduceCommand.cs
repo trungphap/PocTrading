@@ -37,6 +37,7 @@ namespace Commands
             finally
             {
                 _producerShell.StatusText = "finished";
+                _producerShell.StatusExecutable = true;
             }
         }
 
@@ -56,8 +57,7 @@ namespace Commands
                     Thread.Sleep(t);
                 else
                     Thread.Sleep(1);
-            }
-            
+            }           
         }
 
 
