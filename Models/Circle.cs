@@ -11,11 +11,12 @@ namespace Models
         public Circle()
         {
             Random rnd = new Random();
-            Diametre = (decimal)rnd.NextDouble() * 10;
+            Diametre = rnd.Next(1, int.MaxValue);
             Name = "Circle";
             Id = rnd.Next(1, 1000);
         }
 
-        public decimal Diametre { get; set; }
+        public int Diametre { get; set; }
+        public override string ToString() => $"Diametre = {Diametre}";
     }
 }

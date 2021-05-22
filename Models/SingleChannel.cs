@@ -2,11 +2,11 @@
 using System.Threading.Channels;
 namespace Models
 {
-    public sealed class SingleChannel
+    public class SingleChannel
 
     {
         public static int Length { set; get; }
-        private static Channel <Shape> _shareChannel ;
+        protected static Channel <Shape> _shareChannel ;
         private static Object _locker = new Object() ;
         private SingleChannel()
         {

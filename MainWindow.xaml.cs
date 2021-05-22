@@ -16,7 +16,7 @@ namespace WpfBasic
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(this.txtDescription.Text);
+           
 
         }
 
@@ -27,7 +27,7 @@ namespace WpfBasic
 
         private void Checkbox_Checked(object sender, RoutedEventArgs e)
         {
-            this.txtDescription.Text += ((CheckBox)sender).Content;
+           
         }
 
         private void Checkbox_Unchecked(object sender, RoutedEventArgs e)
@@ -39,9 +39,7 @@ namespace WpfBasic
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var combo = ((ComboBox)sender).SelectedValue;
-            var comboItem = ((ComboBoxItem)combo).Content;
-
-            this.txtStatus.Text = (string)comboItem;
+            var comboItem = ((ComboBoxItem)combo).Content;           
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

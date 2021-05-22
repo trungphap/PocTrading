@@ -41,7 +41,7 @@
             </Grid>
             
             <!-- Set and commnand Producer 1 -->
-            <TextBlock Text="Producer" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Producer 1" FontWeight="Bold" HorizontalAlignment="Center"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -60,9 +60,10 @@
                          CommandParameter="{Binding ElementName=txtStepTimeProducer,Path=Text}"/>
             </Grid>
             <TextBlock Text="{Binding ProducerShell.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
+            <TextBox x:Name="txtDescriptionP1" Padding="2" Text="{Binding ProducerShell.FontText, Source={StaticResource cs}}"/>
 
             <!-- Set and commnand Consumer 1 -->
-            <TextBlock Text="Consumer" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Consumer 1" FontWeight="Bold" HorizontalAlignment="Center"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -82,25 +83,47 @@
 
             </Grid>
             <TextBlock Text="{Binding Consummer.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
-            
-            
+            <TextBox x:Name="txtDescriptionC1" Padding="2" Text="{Binding Consummer.FontText, Source={StaticResource cs}}"/>
 
-            <TextBox x:Name="txtDescription" Padding="2" Text="to be implemented"/>
+
+            <!-- Set and commnand Producer 2 -->
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel  Grid.Column="0" Margin="0 0 10 0">
-                    <TextBlock x:Name="lblStatus" Text="Status" />
-                    <TextBox x:Name="txtStatus" Padding="2" IsReadOnly="True" Background="#eee"/>
+                    <TextBlock x:Name="lblStatus" Text="Producer 2" FontWeight="Black" TextAlignment="Center"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel  Grid.Column="0" Margin="0 0 10 0">
+                            <TextBlock x:Name="lblStepP2" Text="Step P2" TextAlignment="Left"  Margin="0 0 10 0"/>
+                            <TextBox x:Name="txtStepP2" Padding="2" Grid.Column="1"  Margin="0 10 0 0"/>
+                        </StackPanel>
+                        <StackPanel  Grid.Column="1" Margin="0 0 0 0">
+                            <Button Command="{Binding ProduceCommand2, Source={StaticResource cs}}"
+                        Margin="0 0 0 10" Grid.Column="2" Content="Run"
+                        CommandParameter="{Binding ElementName=txtStepP2,Path=Text}"/>
+                            <Button Command="{Binding StopCommand, Source={StaticResource cs}}"
+                                             Margin="0 0 0 0" Grid.Column="2" Content="Stop"  />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Text="{Binding ProducerShell2.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
+                    <TextBox x:Name="txtDescriptionP2" Padding="2" Text="{Binding ProducerShell2.FontText, Source={StaticResource cs}}"/>
+                       
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBlock   Text="Revision" />
+                    <TextBlock   Text="Consumer 2" FontWeight="Black" TextAlignment="Center"/>
                     <TextBox Padding="2" IsReadOnly="True" Background="#eee"/>
                 </StackPanel>
             </Grid>
+            
+            
+            
 
             <TextBlock Text="Part Number"/>
             <TextBox Padding="2" IsReadOnly="True" Background="#eee"/>

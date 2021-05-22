@@ -12,15 +12,15 @@ namespace Models
         {
             Random rnd = new Random();
 
-            Longueur = (decimal)rnd.NextDouble() * 10;
-            Largeur = (decimal)rnd.NextDouble() * 10;
+            Longueur = rnd.Next(1,int.MaxValue);
+            Largeur = rnd.Next(1, int.MaxValue);
             Name = "Rectangle";
             Id = rnd.Next(1, 1000);
         }
 
 
-        public decimal Longueur { get; set; }
-        public decimal Largeur { get; set; }
-
+        public int Longueur { get; set; }
+        public int Largeur { get; set; }
+        public override string ToString() => $"Longueur = {Longueur} Largeur = {Largeur}";
     }
 }

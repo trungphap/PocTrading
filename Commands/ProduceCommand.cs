@@ -42,37 +42,25 @@ namespace Commands
 
         public async Task FillChannelWhile(object parameter)
         {
-            _producerShell.StatusExecutable = false;          
+            _producerShell.StatusExecutable = false;
             Random rnd = new Random();
-            while (true)
+            while (!_queueShell.StatusExecutable)
             {
-                var shapeType = rnd.Next(0, 2);
+                var shapeType = rnd.Next(0, 3);
                 var shapeFactory = GetShapeFactory(shapeType);
                 var shape = shapeFactory.CreateShape();
                 await SingleChannel.ShareChannelWriter.WriteAsync(shape);
-                _producerShell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } write {shape.Name} {shape.Id} on channel";
+                _producerShell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } write {shape.Name} {shape.Id} :";
+                _producerShell.FontText = shape.ToString();
                 if (int.TryParse(parameter as string, out int t))
-                    await Task.Delay(t);
+                    Thread.Sleep(t);
                 else
-                    await Task.Delay(1);
+                    Thread.Sleep(1);
             }
+            
         }
 
 
-        public async Task FillQueueWhile()
-        {
-            Random rnd = new Random();
-
-            while (_shareQueue.Count < 10000000)
-            {
-                var shapeType = rnd.Next(0, 2);
-                var shapeFactory = GetShapeFactory(shapeType);
-                var shape = shapeFactory.CreateShape();
-                _producerShell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } created {shape.Name} {shape.Id} on queue length {_shareQueue.Count}";
-                _shareQueue.Enqueue(shape);
-                await Task.Delay(10);
-            }
-        }
         ShapeFactory GetShapeFactory(int type)
         {
             ShapeFactory shapeFactory = null;

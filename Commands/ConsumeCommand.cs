@@ -31,8 +31,7 @@ namespace Commands
         {
             try
             {               
-                Task t2 = Task.Run(async () => await ReadChannelWhile(parameter));
-                //Task t2 = Task.Run(async () => await PeakQueueWhile());
+                Task t2 = Task.Run(async () => await ReadChannelWhile(parameter));              
                 await Task.WhenAll(t2);
             }
             finally
@@ -50,28 +49,19 @@ namespace Commands
             {
                 if (SingleChannel.ShareChannelReader.TryRead(out shape))
                     {
-                    _consummer.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } treated {shape?.Name} {shape?.Id} from channel";
+                    _consummer.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } treated {shape?.Name} {shape?.Id} ";
+                    _consummer.FontText = shape.ToString() ;
                 }
                 if (int.TryParse(parameter as string, out int t))
-                    await Task.Delay(t);
+                    Thread.Sleep(t);
+                //await Task.Delay(t);
                 else
-                    await Task.Delay(1);
+                    Thread.Sleep(1);
+                //await Task.Delay(1);
             }
 
         }
 
 
-        public async Task PeakQueueWhile()
-        {
-            Shape shape;
-            while (true)
-            {
-                _shareQueue.TryDequeue(out shape);
-                _consummer.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } treated {shape?.Name} {shape?.Id} on queue length {_shareQueue.Count}";
-
-               await Task.Delay(100);
-            }
-
-        }
     }
 }

@@ -12,17 +12,18 @@ namespace Models
         {
             Random rnd = new Random();
 
-            A = (decimal)rnd.NextDouble() * 10;
-            B = (decimal)rnd.NextDouble() * 10;
-            C = (decimal)rnd.NextDouble() * 10;
+            A = rnd.Next(1, int.MaxValue);
+            B = rnd.Next(1, int.MaxValue);
+            C = rnd.Next(1, int.MaxValue);
             Name = "Triangle";
             Id = rnd.Next(1, 1000);
         }
 
 
-        public decimal A { get; set; }
-        public decimal B { get; set; }
-        public decimal C { get; set; }
+        public int A { get; set; }
+        public int B { get; set; }
+        public int C { get; set; }
+        public override string ToString() => $"A = {A} B = {B} C = {C}";
 
     }
 }

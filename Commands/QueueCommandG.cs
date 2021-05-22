@@ -28,14 +28,13 @@ namespace Commands
 
         private async Task SetChanelLength(T param)
         {
-            _queue.StatusExecutable = false;
-            //_queue.FontText = "#eee";
-            //ExecutedOnce = true;
+            _queue.StatusExecutable = false;            
             if (int.TryParse(param as string, out int t))
                 SingleChannel.SetChannel(t);
             else
                 SingleChannel.SetChannel(1000);
             await Task.Delay(1);
+            
         }
     }
 }
