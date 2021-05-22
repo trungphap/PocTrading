@@ -64,7 +64,7 @@
                         Margin="10 0 0 0" Grid.Column="2" Content="Run"
                          CommandParameter="{Binding ElementName=txtStepTimeProducer,Path=Text}"/>
                 <Button x:Name="btnStopP1" Command="{Binding StopProduce, Source={StaticResource cs}}" 
-                        Margin="10 0 0 0" Grid.Column="3" Content="Stop"/>
+                        Margin="10,0,0,0" Grid.Column="3" Content="Stop" Height="20" VerticalAlignment="Top"/>
 
             </Grid>
             <TextBlock Text="{Binding ProducerShell.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
@@ -79,7 +79,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock  Margin="0 0 10 0" Grid.Column="0" Text="Step Time Consumer"></TextBlock>
+                <TextBlock  Margin="0 0 10 0" Grid.Column="0" Text="Step Time C1"></TextBlock>
                 <TextBox  x:Name="txtStepTimeConsumer" Grid.Column="1" TextAlignment="Right"  
                            IsReadOnly="{Binding Consummer.StatusExecutable, Source={StaticResource cs},
                                         Converter={StaticResource InverseBool}}" 
@@ -94,12 +94,14 @@
 
             </Grid>
             <TextBlock Text="{Binding Consummer.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
-            <TextBox x:Name="txtDescriptionC1" Padding="2" Text="{Binding Consummer.FontText, Source={StaticResource cs}}"/>
+            <TextBox x:Name="txtDescriptionC1" Padding="2" Margin="0 5"
+                           Text="{Binding Consummer.FontText, Source={StaticResource cs}}"/>
 
 
-            <!-- Set and commnand Producer 2 -->
+
 
             <Grid>
+                <!-- Set and commnand Producer 2 -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -116,19 +118,37 @@
                         <TextBox x:Name="txtStepP2" Padding="2" Grid.Column="1"  Margin="0 0 0 0"/>
                     </Grid>
 
-                    <Button Command="{Binding ProduceCommand2, Source={StaticResource cs}}"
-                        Margin="0 5 0 10" Grid.Column="2" Content="Run"
-                        CommandParameter="{Binding ElementName=txtStepP2,Path=Text}"/>                    <TextBlock Text="{Binding ProducerShell2.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
+                    <TextBlock Text="{Binding ProducerShell2.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
                     <TextBox x:Name="txtDescriptionP2" Padding="2" Text="{Binding ProducerShell2.FontText, Source={StaticResource cs}}"/>
-
+                    <Button Command="{Binding ProduceCommand2, Source={StaticResource cs}}"
+                         Height="20"  Margin="0 5 0 0" Grid.Column="2" Content="Run"
+                        CommandParameter="{Binding ElementName=txtStepP2,Path=Text}"/>
+                    <Button x:Name="btnStopP2" Command="{Binding StopProduce, Source={StaticResource cs}}" 
+                        Margin="0,5,0,0"  Content="Stop" Height="20" VerticalAlignment="Center"/>
                 </StackPanel>
+
+                <!-- Set and commnand Consumer 2 -->
                 <StackPanel Grid.Column="1">
                     <TextBlock   Text="Consumer 2" FontWeight="Black" TextAlignment="Center" Margin="0 3 0 2"/>
-                    <TextBox Padding="2" IsReadOnly="True" Background="#eee"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="lblStepc2" Text="Step time C2" TextAlignment="Left" Grid.Column="0" Margin="0 0 10 0"/>
+                        <TextBox x:Name="txtStepc2" Padding="2" Grid.Column="1"  Margin="0 0 0 0"/>
+                    </Grid>
+                    <TextBlock Text="{Binding ProducerShell2.StatusText, Source={StaticResource cs}}" FontWeight="Bold" Margin="0 10"/>
+                    <TextBox x:Name="txtDescriptionC2" Padding="2" Text="{Binding ProducerShell2.FontText, Source={StaticResource cs}}"/>
+                    <Button Command="{Binding ProduceCommand2, Source={StaticResource cs}}"
+                         Height="20"  Margin="0 5 0 0" Grid.Column="2" Content="Run"
+                        CommandParameter="{Binding ElementName=txtStepP2,Path=Text}"/>
+                    <Button x:Name="btnStopC2" Command="{Binding StopProduce, Source={StaticResource cs}}" 
+                        Margin="0,5,0,0"  Content="Stop" Height="20" VerticalAlignment="Center"/>
                 </StackPanel>
             </Grid>
             <!-- Stop button -->
-        
+
             <!-- COMBO BOX -->
             <TextBlock Text="Choose number of processes" FontWeight="Bold" Margin="2 2"/>
             <ComboBox Padding="2 ">
@@ -148,7 +168,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel  Grid.Column="0" Margin="0 0 10 0">
                     <CheckBox Checked="Checkbox_Checked" Unchecked="Checkbox_Unchecked"  x:Name="Producer1" Content="Producer 1"/>
-                    <CheckBox Checked="Checkbox_Checked" Unchecked="Checkbox_Unchecked"  x:Name="Producer2" Content="Producer 2"/>                   
+                    <CheckBox Checked="Checkbox_Checked" Unchecked="Checkbox_Unchecked"  x:Name="Producer2" Content="Producer 2"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <CheckBox x:Name="Consumer1" Content="Consumer 1"/>
