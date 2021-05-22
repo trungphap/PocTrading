@@ -22,7 +22,7 @@ namespace ViewModels
         {
            // MyCommand = new CustomerCommand(ExcuteMethod, CanExecuteMethod);           
             Consummer = new Shell() { StatusExecutable = true };
-            QueueShell = new Shell();
+            QueueShell = new Shell() { StatusExecutable = true };
             ProducerShell = new Shell() { StatusExecutable =true};
             OpenCommand = new OpenCommand(ProducerShell);
 

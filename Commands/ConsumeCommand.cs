@@ -24,7 +24,7 @@ namespace Commands
 
         public override bool CanExecute(object parameter)
         {           
-            return _queueShell.StatusExecutable && int.TryParse(parameter as string, out int t);
+            return !_queueShell.StatusExecutable && int.TryParse(parameter as string, out int t) && _consummer.StatusExecutable;
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -44,7 +44,7 @@ namespace Commands
         public async Task ReadChannelWhile(object parameter)
         {
             Shape shape;
-
+            _consummer.StatusExecutable = false;
 
             while (await  SingleChannel.ShareChannelReader.WaitToReadAsync())
             {

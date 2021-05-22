@@ -24,15 +24,14 @@ namespace Commands
         public override bool CanExecute(object parameter)
         {
             
-            return _queueShell.StatusExecutable && int.TryParse(parameter as string ,out int t)
+            return !_queueShell.StatusExecutable && int.TryParse(parameter as string ,out int t)
                && _producerShell.StatusExecutable ;
         }
 
         public override async Task ExecuteAsync(object parameter)
         {
             try
-            {
-                //await Task.Run(async () => await FillQueueWhile());               
+            {                    
                 await Task.Run(async () => await FillChannelWhile(parameter));
             }
             finally
@@ -43,8 +42,7 @@ namespace Commands
 
         public async Task FillChannelWhile(object parameter)
         {
-            _producerShell.StatusExecutable = false;
-            _producerShell.FontText = "#eee";          
+            _producerShell.StatusExecutable = false;          
             Random rnd = new Random();
             while (true)
             {

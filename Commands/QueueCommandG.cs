@@ -6,7 +6,7 @@ namespace Commands
 {
     public sealed class QueueCommandG<T> : AsyncCommandG<T>
     {
-        static bool ExecutedOnce = false;
+        //static bool ExecutedOnce = false;
         readonly IShell _queue;
         readonly ConcurrentQueue<Shape> _shareQueue;
         public QueueCommandG(IShell queue)
@@ -18,7 +18,7 @@ namespace Commands
 
         public override bool CanExecute(T param)
         {
-            return int.TryParse(param as string, out int t) && !ExecutedOnce;
+            return int.TryParse(param as string, out int t) && _queue.StatusExecutable;
         }
 
         public override async Task ExecuteAsync(T param)
@@ -28,9 +28,9 @@ namespace Commands
 
         private async Task SetChanelLength(T param)
         {
-            _queue.StatusExecutable = true;
-            _queue.FontText = "#eee";
-            ExecutedOnce = true;
+            _queue.StatusExecutable = false;
+            //_queue.FontText = "#eee";
+            //ExecutedOnce = true;
             if (int.TryParse(param as string, out int t))
                 SingleChannel.SetChannel(t);
             else
