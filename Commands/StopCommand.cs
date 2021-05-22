@@ -28,6 +28,7 @@ namespace Commands
         public async  override Task ExecuteAsync(object parameter)
         {
             _stopShell.StatusExecutable =true;
+            _stopShell.FontText ="";
             await Task.Delay(1);
         }
     

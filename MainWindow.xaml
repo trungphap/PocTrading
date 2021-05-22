@@ -29,6 +29,7 @@
 
                 <TextBlock  Margin="0 0 10 0" Grid.Column="0" Text="Max queue length"></TextBlock>
                 <TextBox  x:Name="txtQueueLength" TextAlignment="Right" Grid.Column="1" 
+                         Text="{Binding QueueShell.FontText, Source={StaticResource cs},Mode=TwoWay}"
                           IsReadOnly="{Binding QueueShell.StatusExecutable, Source={StaticResource cs},
                                         Converter={StaticResource InverseBool}}"  
                            Background="{Binding QueueShell.StatusExecutable, Source={StaticResource cs}
