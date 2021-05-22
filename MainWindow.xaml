@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfBasic"
         xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+        xmlns:converters="clr-namespace:Converters;assembly=Converters"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
        
         Title="MainWindow" Height="600" Width="400">
     <Window.Resources>
         <vm:Customer x:Key="cs"/>
+        <converters:ExecutableToReadonlyConverter x:Key="InverseBool"/>
     </Window.Resources>
     <Border Padding="10">
 
@@ -47,7 +49,8 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock  Margin="0 0 10 0" Grid.Column="0" Text="Step Time Producer"></TextBlock>
                 <TextBox  x:Name="txtStepTimeProducer" Grid.Column="1" TextAlignment="Right"      
-                           
+                             IsReadOnly="{Binding ProducerShell.StatusExecutable, Source={StaticResource cs},
+                             Converter={StaticResource InverseBool}}" 
                           Background="{Binding ProducerShell.FontText, Source={StaticResource cs}}"
                           ></TextBox>
                 <Button x:Name="btnProduce" Command="{Binding ProduceCommand, Source={StaticResource cs}}" 

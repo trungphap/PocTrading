@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="Converters\Converters.csproj" />
     <ProjectReference Include="Models\Models.csproj" />
     <ProjectReference Include="ViewModels\ViewModels.csproj" />
   </ItemGroup>
