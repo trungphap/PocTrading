@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfBasic", "WpfBasic.csproj", "{EAE1C4FD-CD98-4EC8-AC80-635D7245FC60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfBasic", "WpfBasic\WpfBasic.csproj", "{EAE1C4FD-CD98-4EC8-AC80-635D7245FC60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Commands\Commands.csproj", "{071D912C-05A6-4D13-8D55-5A2D136000F5}"
 EndProject

@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="ViewModels\ViewModels.csproj" />
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
-
 </Project>
