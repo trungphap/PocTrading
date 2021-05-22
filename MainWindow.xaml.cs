@@ -20,10 +20,6 @@ namespace WpfBasic
 
         }
 
-        private void btnAReset_Click(object sender, RoutedEventArgs e)
-        {
-            this.WeldCheckbox.IsChecked = true;
-        }
 
         private void Checkbox_Checked(object sender, RoutedEventArgs e)
         {

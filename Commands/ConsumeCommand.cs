@@ -30,7 +30,8 @@ namespace Commands
         public override async Task ExecuteAsync(object parameter)
         {
             try
-            {               
+            {
+                _consummer.IsExecuting = true;
                 Task t2 = Task.Run(async () => await ReadChannelWhile(parameter));              
                 await Task.WhenAll(t2);
             }
@@ -38,6 +39,7 @@ namespace Commands
             {
                 _consummer.StatusExecutable = true;
                 _consummer.StatusText = "finished";
+                _consummer.IsExecuting = false;
             }
         }
 
@@ -46,7 +48,7 @@ namespace Commands
             Shape shape;
             _consummer.StatusExecutable = false;
 
-            while (await  SingleChannel.ShareChannelReader.WaitToReadAsync() && !_queueShell.StatusExecutable)
+            while (await  SingleChannel.ShareChannelReader.WaitToReadAsync() && !_queueShell.StatusExecutable && _consummer.IsExecuting)
             {
                 if (SingleChannel.ShareChannelReader.TryRead(out shape))
                     {
