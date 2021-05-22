@@ -29,6 +29,7 @@ namespace Commands
         private async Task SetChanelLength(T param)
         {
             _queue.StatusExecutable = true;
+            _queue.FontText = "#eee";
             ExecutedOnce = true;
             if (int.TryParse(param as string, out int t))
                 SingleChannel.SetChannel(t);

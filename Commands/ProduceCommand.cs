@@ -10,11 +10,13 @@ namespace Commands
 {
     public sealed class ProduceCommand : AsyncCommand
     {
-        readonly IShell _shell;
+        readonly IShell _producerShell;
+        readonly IShell _queueShell;
         readonly ConcurrentQueue<Shape> _shareQueue;
-        public ProduceCommand(IShell shell)
+        public ProduceCommand(IShell producerShell, IShell queueShell)
         {
-            _shell = shell;
+            _producerShell = producerShell;
+            _queueShell = queueShell;
             _shareQueue = SingleQueue.ShareQueueLazy;
         }
 
@@ -22,7 +24,8 @@ namespace Commands
         public override bool CanExecute(object parameter)
         {
             
-            return _shell.StatusExecutable && int.TryParse(parameter as string ,out int t);
+            return _queueShell.StatusExecutable && int.TryParse(parameter as string ,out int t)
+               && _producerShell.StatusExecutable ;
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -34,12 +37,14 @@ namespace Commands
             }
             finally
             {
-                _shell.StatusText = "finished";
+                _producerShell.StatusText = "finished";
             }
         }
 
         public async Task FillChannelWhile(object parameter)
         {
+            _producerShell.StatusExecutable = false;
+            _producerShell.FontText = "#eee";          
             Random rnd = new Random();
             while (true)
             {
@@ -47,7 +52,7 @@ namespace Commands
                 var shapeFactory = GetShapeFactory(shapeType);
                 var shape = shapeFactory.CreateShape();
                 await SingleChannel.ShareChannelWriter.WriteAsync(shape);
-                _shell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } write {shape.Name} {shape.Id} on channel";
+                _producerShell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } write {shape.Name} {shape.Id} on channel";
                 if (int.TryParse(parameter as string, out int t))
                     await Task.Delay(t);
                 else
@@ -65,7 +70,7 @@ namespace Commands
                 var shapeType = rnd.Next(0, 2);
                 var shapeFactory = GetShapeFactory(shapeType);
                 var shape = shapeFactory.CreateShape();
-                _shell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } created {shape.Name} {shape.Id} on queue length {_shareQueue.Count}";
+                _producerShell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } created {shape.Name} {shape.Id} on queue length {_shareQueue.Count}";
                 _shareQueue.Enqueue(shape);
                 await Task.Delay(10);
             }

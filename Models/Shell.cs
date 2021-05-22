@@ -6,6 +6,7 @@ namespace Models
     public class Shell : IShell, INotifyPropertyChanged
     {
         string _statusText;
+        string _fontText;
         bool _statusExecutable;
         public string StatusText
         {
@@ -13,6 +14,15 @@ namespace Models
             set
             {
                 _statusText = value;
+                OnPropertyChanged();
+            }
+        }
+        public string FontText
+        {
+            get => _fontText;
+            set
+            {
+                _fontText = value;
                 OnPropertyChanged();
             }
         }
