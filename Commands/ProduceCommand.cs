@@ -47,11 +47,14 @@ namespace Commands
         {
             _producerShell.StatusExecutable = false;
             Random rnd = new Random();
-            while (!_queueShell.StatusExecutable && _producerShell.IsExecuting)
+            var cancellationToken = new CancellationToken();
+            while ((await SingleChannel.ShareChannelWriter.WaitToWriteAsync(cancellationToken)) 
+                && !_queueShell.StatusExecutable && _producerShell.IsExecuting )
             {
                 var shapeType = rnd.Next(0, 3);
                 var shapeFactory = GetShapeFactory(shapeType);
                 var shape = shapeFactory.CreateShape();
+                
                 await SingleChannel.ShareChannelWriter.WriteAsync(shape);
                 _producerShell.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } write {shape.Name} {shape.Id} :";
                 _producerShell.FontText = shape.ToString();

@@ -47,8 +47,8 @@ namespace Commands
         {
             Shape shape;
             _consummer.StatusExecutable = false;
-
-            while (await  SingleChannel.ShareChannelReader.WaitToReadAsync() && !_queueShell.StatusExecutable && _consummer.IsExecuting)
+            var cancellationToken = new CancellationToken();
+            while (await  SingleChannel.ShareChannelReader.WaitToReadAsync(cancellationToken) && !_queueShell.StatusExecutable && _consummer.IsExecuting)
             {
                 if (SingleChannel.ShareChannelReader.TryRead(out shape))
                     {

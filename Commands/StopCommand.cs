@@ -29,7 +29,7 @@ namespace Commands
         {
             _stopShell.StatusExecutable =true;
             _stopShell.FontText ="";
-            //SingleChannel.ResetChannel();
+           if(SingleChannel.ShareChannelWriter.TryComplete()) SingleChannel.ResetChannel();
             await Task.Delay(1);
         }
     

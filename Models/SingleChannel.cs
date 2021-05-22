@@ -17,6 +17,7 @@ namespace Models
         }
         public static void SetChannel(int length)
         {
+            //_shareChannel = Channel.CreateBounded<Shape>(length);
             if (_shareChannel == null)
             {
                 lock (_locker)
