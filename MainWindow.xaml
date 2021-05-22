@@ -4,16 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfBasic"
-        xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
-        xmlns:converters="clr-namespace:Converters;assembly=Converters"
+        xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"        
         mc:Ignorable="d"
         Loaded="Window_Loaded"
        
         Title="Poc Trading" Height="600" Width="400">
     <Window.Resources>
         <vm:Customer x:Key="cs"/>
-        <converters:ExecutableToReadonlyConverter x:Key="InverseBool"/>
-        <converters:BoolToFontConverter x:Key="BoolToFont"/>
+        <local:ExecutableToReadonlyConverter x:Key="InverseBool"/>
+        <local:BoolToFontConverter x:Key="BoolToFont"/>
     </Window.Resources>
     <Border Padding="10">
 

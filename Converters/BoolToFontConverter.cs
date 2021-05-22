@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Converters
+namespace WpfBasic
 {
     [ValueConversion(typeof(bool), typeof(bool))]
     public class BoolToFontConverter : IValueConverter
