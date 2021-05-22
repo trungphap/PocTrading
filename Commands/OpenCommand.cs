@@ -12,13 +12,12 @@ namespace Commands
         {
             _shell = shell;
         }
-        public override bool CanExecute()
+        public override bool CanExecute(object parameter)
         {
-            return true;
-            //return RunningTasks.Count() == 0;
+            return true;          
         }
 
-        public override async Task ExecuteAsync()
+        public override async Task ExecuteAsync(object parameter)
         {
            
             _shell.StatusText = $"Open Async task {Thread.CurrentThread.ManagedThreadId } of {RunningTasks.Count()} ";

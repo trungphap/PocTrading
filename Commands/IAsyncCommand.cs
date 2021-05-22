@@ -6,8 +6,8 @@ namespace Commands
 {
     public interface IAsyncCommand : ICommand
     {
-        bool CanExecute();
-        Task ExecuteAsync();
+        bool CanExecute(object parameter);
+        Task ExecuteAsync(object parameter);
         IEnumerable<Task> RunningTasks { get; }
     }
 }

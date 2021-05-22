@@ -31,17 +31,17 @@ namespace Commands
         }
 
 
-        public abstract bool CanExecute();
+        public abstract bool CanExecute(object parameter);
 
 
         bool ICommand.CanExecute(object parameter)
         {
-            return CanExecute();
+            return CanExecute(parameter);
         }
 
         async void ICommand.Execute(object parameter)
         {
-            Task runningTask = ExecuteAsync();
+            Task runningTask = ExecuteAsync(parameter);
             runningTasks.Add(runningTask);
             try
             {
@@ -54,7 +54,7 @@ namespace Commands
 
         }
 
-        public abstract Task ExecuteAsync();
+        public abstract Task ExecuteAsync(object parameter);
 
     }
 }

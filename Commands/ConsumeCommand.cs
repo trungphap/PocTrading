@@ -22,16 +22,16 @@ namespace Commands
         }
 
 
-        public override bool CanExecute()
-        {
-            return _queueShell.StatusExecutable;           
+        public override bool CanExecute(object parameter)
+        {           
+            return _queueShell.StatusExecutable && int.TryParse(parameter as string, out int t);
         }
 
-        public override async Task ExecuteAsync()
+        public override async Task ExecuteAsync(object parameter)
         {
             try
             {               
-                Task t2 = Task.Run(async () => await ReadChannelWhile());
+                Task t2 = Task.Run(async () => await ReadChannelWhile(parameter));
                 //Task t2 = Task.Run(async () => await PeakQueueWhile());
                 await Task.WhenAll(t2);
             }
@@ -41,7 +41,7 @@ namespace Commands
             }
         }
 
-        public async Task ReadChannelWhile()
+        public async Task ReadChannelWhile(object parameter)
         {
             Shape shape;
 
@@ -51,8 +51,11 @@ namespace Commands
                 if (SingleChannel.ShareChannelReader.TryRead(out shape))
                     {
                     _consummer.StatusText = $"Task { Thread.CurrentThread.ManagedThreadId } treated {shape?.Name} {shape?.Id} from channel";
-                }               
-               // await Task.Delay(100);
+                }
+                if (int.TryParse(parameter as string, out int t))
+                    await Task.Delay(t);
+                else
+                    await Task.Delay(1);
             }
 
         }

@@ -1,15 +1,12 @@
 ﻿using Models;
 using System.Collections.Concurrent;
-using System.Threading.Channels;
-using System.Linq;
 using System.Threading.Tasks;
-using System;
 
 namespace Commands
 {
     public sealed class QueueCommandG<T> : AsyncCommandG<T>
     {
-        static bool CanBeExecuted = true;
+        static bool ExecutedOnce = false;
         readonly IShell _queue;
         readonly ConcurrentQueue<Shape> _shareQueue;
         public QueueCommandG(IShell queue)
@@ -21,7 +18,7 @@ namespace Commands
 
         public override bool CanExecute(T param)
         {
-            return CanBeExecuted;
+            return int.TryParse(param as string, out int t) && !ExecutedOnce;
         }
 
         public override async Task ExecuteAsync(T param)
@@ -32,7 +29,7 @@ namespace Commands
         private async Task SetChanelLength(T param)
         {
             _queue.StatusExecutable = true;
-            CanBeExecuted = false;
+            ExecutedOnce = true;
             if (int.TryParse(param as string, out int t))
                 SingleChannel.SetChannel(t);
             else
