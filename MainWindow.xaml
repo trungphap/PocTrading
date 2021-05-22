@@ -125,6 +125,7 @@
                         CommandParameter="{Binding ElementName=txtStepP2,Path=Text}"/>
                     <Button x:Name="btnStopP2" Command="{Binding StopProduce, Source={StaticResource cs}}" 
                         Margin="0,5,0,0"  Content="Stop" Height="20" VerticalAlignment="Center"/>
+                    <TextBlock Text="Choose number of processes" FontWeight="Bold" Margin="2 5 0 0"/>
                 </StackPanel>
 
                 <!-- Set and commnand Consumer 2 -->
@@ -145,22 +146,27 @@
                         CommandParameter="{Binding ElementName=txtStepP2,Path=Text}"/>
                     <Button x:Name="btnStopC2" Command="{Binding StopProduce, Source={StaticResource cs}}" 
                         Margin="0,5,0,0"  Content="Stop" Height="20" VerticalAlignment="Center"/>
+                    <ComboBox Padding="0 1 0 1"  Margin="0 5 0 0">
+                        <ComboBoxItem Content="1"></ComboBoxItem>
+                        <ComboBoxItem Content="2"></ComboBoxItem>
+                        <ComboBoxItem Content="3"></ComboBoxItem>
+                        <ComboBoxItem Content="4"></ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
+
             </Grid>
             <!-- Stop button -->
 
             <!-- COMBO BOX -->
-            <TextBlock Text="Choose number of processes" FontWeight="Bold" Margin="2 2"/>
-            <ComboBox Padding="2 ">
-                <ComboBoxItem Content="1"></ComboBoxItem>
-                <ComboBoxItem Content="2"></ComboBoxItem>
-                <ComboBoxItem Content="3"></ComboBoxItem>
-                <ComboBoxItem Content="4"></ComboBoxItem>
-            </ComboBox>
+
+
+           
+          
+
 
 
             <!-- CHECK BOX -->
-            <TextBlock Text="Work Centres" Margin="0 3 0 1" FontWeight="Bold"/>
+            <TextBlock Text="Work Centres" Margin="2 5 0 2" FontWeight="Bold"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
