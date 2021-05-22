@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 
 namespace Commands
 {
-    public sealed class StopCommand: AsyncCommand
+    public sealed class StopTask: AsyncCommand
     {
         
         readonly IShell _stopShell;
        
-        public StopCommand(IShell stopShell)
+        public StopTask(IShell stopShell)
         {
             _stopShell = stopShell;
             
@@ -27,9 +27,8 @@ namespace Commands
 
         public async  override Task ExecuteAsync(object parameter)
         {
-            _stopShell.StatusExecutable =true;
-            _stopShell.FontText ="";
-            SingleChannel.ResetChannel();
+            _stopShell.IsExecuting =false;
+            _stopShell.FontText ="";          
             await Task.Delay(1);
         }
     

@@ -15,6 +15,7 @@ namespace ViewModels
         public ICommand ConsumeCommand { get; }
         public ICommand QueueCommand { get; }
         public ICommand StopCommand { get; }
+        public ICommand StopProduce { get; }
         public IShell ProducerShell2 { get; set; }
         public IShell ProducerShell { get; set; }
         public IShell Consummer { get; set; }
@@ -34,7 +35,8 @@ namespace ViewModels
             ProduceCommand = new ProduceCommand(ProducerShell, QueueShell);
             ConsumeCommand = new ConsumeCommand(Consummer,QueueShell);
             QueueCommand = new QueueCommandG<string>(QueueShell);
-            StopCommand = new StopCommand(QueueShell);            
+            StopCommand = new StopCommand(QueueShell);
+            StopProduce = new StopTask(ProducerShell);            
         }
 
 

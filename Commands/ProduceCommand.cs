@@ -31,13 +31,15 @@ namespace Commands
         public override async Task ExecuteAsync(object parameter)
         {
             try
-            {                    
+            {
+                _producerShell.IsExecuting = true;
                 await Task.Run(async () => await FillChannelWhile(parameter));
             }
             finally
             {
                 _producerShell.StatusText = "finished";
                 _producerShell.StatusExecutable = true;
+                _producerShell.IsExecuting = false;
             }
         }
 
@@ -45,7 +47,7 @@ namespace Commands
         {
             _producerShell.StatusExecutable = false;
             Random rnd = new Random();
-            while (!_queueShell.StatusExecutable)
+            while (!_queueShell.StatusExecutable && _producerShell.IsExecuting)
             {
                 var shapeType = rnd.Next(0, 3);
                 var shapeFactory = GetShapeFactory(shapeType);

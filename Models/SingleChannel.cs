@@ -5,9 +5,8 @@ namespace Models
     public class SingleChannel
 
     {
-        public static int Length { set; get; }
-        protected static Channel <Shape> _shareChannel ;
-        private static Object _locker = new Object() ;
+        private static Channel<Shape> _shareChannel;
+        private static Object _locker = new Object();
         private SingleChannel()
         {
 
@@ -16,15 +15,25 @@ namespace Models
         {
 
         }
-        public static void SetChannel(int Length)
+        public static void SetChannel(int length)
         {
-            if(_shareChannel == null)
+            if (_shareChannel == null)
             {
                 lock (_locker)
                 {
-                    if (_shareChannel == null) _shareChannel = Channel.CreateBounded<Shape>(Length);
+                    if (_shareChannel == null) _shareChannel = Channel.CreateBounded<Shape>(length);
                 }
-            }            
+            }
+        }
+        public static void ResetChannel()
+        {
+            if (_shareChannel != null)
+            {
+                lock (_locker)
+                {
+                    if (_shareChannel != null) _shareChannel =null;
+                }
+            }
         }
 
         public static ChannelWriter<Shape> ShareChannelWriter

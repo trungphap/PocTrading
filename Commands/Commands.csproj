@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AsyncCommandG.cs" />
     <Compile Include="AsyncCommand.cs" />
+    <Compile Include="StopTask.cs" />
     <Compile Include="StopCommand.cs" />
     <Compile Include="QueueCommandG.cs" />
     <Compile Include="CustomerCommand.cs" />

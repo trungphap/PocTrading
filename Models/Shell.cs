@@ -8,6 +8,7 @@ namespace Models
         string _statusText;
         string _fontText;
         bool _statusExecutable;
+        bool _isExecuting;
         public string StatusText
         {
             get => _statusText;
@@ -33,6 +34,15 @@ namespace Models
             set
             {
                 _statusExecutable = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsExecuting
+        {
+            get => _isExecuting;
+            set
+            {
+                _isExecuting = value;
                 OnPropertyChanged();
             }
         }
