@@ -165,7 +165,7 @@
 
 
             <!-- CHECK BOX -->
-            <TextBlock Text="Work Centres" Margin="2 5 0 2" FontWeight="Bold"/>
+            <TextBlock Text="Choose processes" Margin="2 5 0 2" FontWeight="Bold"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
